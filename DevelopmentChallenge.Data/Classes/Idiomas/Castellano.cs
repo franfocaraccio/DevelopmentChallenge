@@ -10,7 +10,9 @@ namespace DevelopmentChallenge.Data.Classes.Idiomas
         {
             { typeof(Cuadrado), new[] { "Cuadrado", "Cuadrados" } },
             { typeof(Circulo), new[] { "Círculo", "Círculos" } },
-            { typeof(TrianguloEquilatero), new[] { "Triángulo", "Triángulos" } }
+            { typeof(TrianguloEquilatero), new[] { "Triángulo", "Triángulos" } },
+            { typeof(Rectangulo), new[] { "Rectángulo", "Rectángulos" } },
+            { typeof(Trapecio), new[] { "Trapecio", "Trapecios" } }
         };
 
         public string ListaVacia => "Lista vacía de formas!";

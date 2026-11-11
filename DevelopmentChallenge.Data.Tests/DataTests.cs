@@ -92,6 +92,23 @@ namespace DevelopmentChallenge.Data.Tests
         }
 
         [TestCase]
+        public void TestResumenListaConRectangulosYTrapecio()
+        {
+            var formas = new List<FormaGeometrica>
+            {
+                new Rectangulo(2, 3),
+                new Trapecio(6, 4, 2),
+                new Rectangulo(1, 1)
+            };
+
+            var resumen = new ReporteFormas(new Castellano()).Imprimir(formas);
+
+            Assert.AreEqual(
+                "<h1>Reporte de Formas</h1>2 Rectángulos | Area 7 | Perimetro 14 <br/>1 Trapecio | Area 10 | Perimetro 14,47 <br/>TOTAL:<br/>3 formas Perimetro 28,47 Area 17",
+                resumen);
+        }
+
+        [TestCase]
         [SetCulture("en-US")]
         public void TestResumenNoDependeDeLaCulturaDelSistema()
         {

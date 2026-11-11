@@ -44,6 +44,8 @@
     <Compile Include="Classes\FormaGeometrica.cs" />
     <Compile Include="Classes\Formas\Circulo.cs" />
     <Compile Include="Classes\Formas\Cuadrado.cs" />
+    <Compile Include="Classes\Formas\Rectangulo.cs" />
+    <Compile Include="Classes\Formas\Trapecio.cs" />
     <Compile Include="Classes\Formas\TrianguloEquilatero.cs" />
     <Compile Include="Classes\IIdioma.cs" />
     <Compile Include="Classes\Idiomas\Castellano.cs" />
