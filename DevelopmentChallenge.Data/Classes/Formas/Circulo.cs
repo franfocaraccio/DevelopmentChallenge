@@ -8,7 +8,7 @@ namespace DevelopmentChallenge.Data.Classes.Formas
 
         public Circulo(decimal diametro)
         {
-            Diametro = diametro;
+            Diametro = ValidarMedida(diametro, nameof(diametro));
         }
 
         public override decimal CalcularArea() => (decimal)Math.PI * (Diametro / 2) * (Diametro / 2);

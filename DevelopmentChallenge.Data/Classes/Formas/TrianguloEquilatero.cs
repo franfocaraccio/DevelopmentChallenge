@@ -8,7 +8,7 @@ namespace DevelopmentChallenge.Data.Classes.Formas
 
         public TrianguloEquilatero(decimal lado)
         {
-            Lado = lado;
+            Lado = ValidarMedida(lado, nameof(lado));
         }
 
         public override decimal CalcularArea() => ((decimal)Math.Sqrt(3) / 4) * Lado * Lado;

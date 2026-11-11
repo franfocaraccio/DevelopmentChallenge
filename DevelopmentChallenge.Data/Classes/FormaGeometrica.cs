@@ -35,6 +35,14 @@ namespace DevelopmentChallenge.Data.Classes
             typeof(TrianguloEquilatero)
         };
 
+        protected static decimal ValidarMedida(decimal valor, string nombre)
+        {
+            if (valor <= 0)
+                throw new ArgumentOutOfRangeException(nombre, valor, "La medida debe ser mayor a cero.");
+
+            return valor;
+        }
+
         public abstract decimal CalcularArea();
 
         public abstract decimal CalcularPerimetro();

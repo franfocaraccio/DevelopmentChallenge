@@ -6,7 +6,7 @@ namespace DevelopmentChallenge.Data.Classes.Formas
 
         public Cuadrado(decimal lado)
         {
-            Lado = lado;
+            Lado = ValidarMedida(lado, nameof(lado));
         }
 
         public override decimal CalcularArea() => Lado * Lado;
