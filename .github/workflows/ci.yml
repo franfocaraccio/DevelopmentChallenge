@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: Tests (${{ matrix.region }})
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        region: [es-AR, en-US]
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: microsoft/setup-msbuild@v3
+
+      - uses: NuGet/setup-nuget@v4
+
+      - name: Restaurar paquetes
+        run: nuget restore DevelopmentChallenge.sln
+
+      - name: Compilar
+        run: msbuild DevelopmentChallenge.sln /p:Configuration=Release /v:minimal
+
+      - name: Configurar región ${{ matrix.region }}
+        run: Set-Culture ${{ matrix.region }}
+
+      - name: Ejecutar tests
+        run: |
+          (Get-Culture).Name
+          packages\NUnit.ConsoleRunner.3.11.1\tools\nunit3-console.exe DevelopmentChallenge.Data.Tests\bin\Release\DevelopmentChallenge.Data.Tests.dll --noresult
