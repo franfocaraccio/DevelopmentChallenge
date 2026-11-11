@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataTests.cs" />
     <Compile Include="FormasTests.cs" />
+    <Compile Include="TraduccionesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
