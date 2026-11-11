@@ -92,6 +92,32 @@ namespace DevelopmentChallenge.Data.Tests
         }
 
         [TestCase]
+        public void TestResumenListaVaciaEnItaliano()
+        {
+            Assert.AreEqual("<h1>Lista vuota di forme!</h1>",
+                new ReporteFormas(new Italiano()).Imprimir(new List<FormaGeometrica>()));
+        }
+
+        [TestCase]
+        public void TestResumenListaConTodasLasFormasEnItaliano()
+        {
+            var formas = new List<FormaGeometrica>
+            {
+                new Cuadrado(5),
+                new Circulo(3),
+                new TrianguloEquilatero(4),
+                new Rectangulo(2, 3),
+                new Trapecio(6, 4, 2)
+            };
+
+            var resumen = new ReporteFormas(new Italiano()).Imprimir(formas);
+
+            Assert.AreEqual(
+                "<h1>Rapporto delle forme</h1>1 Quadrato | Area 25 | Perimetro 20 <br/>1 Cerchio | Area 7,07 | Perimetro 9,42 <br/>1 Triangolo | Area 6,93 | Perimetro 12 <br/>1 Rettangolo | Area 6 | Perimetro 10 <br/>1 Trapezio | Area 10 | Perimetro 14,47 <br/>TOTALE:<br/>5 forme Perimetro 65,9 Area 55",
+                resumen);
+        }
+
+        [TestCase]
         public void TestResumenListaConRectangulosYTrapecio()
         {
             var formas = new List<FormaGeometrica>
