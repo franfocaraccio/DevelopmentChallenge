@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DevelopmentChallenge.Data.Classes;
+using DevelopmentChallenge.Data.Classes.Idiomas;
 using NUnit.Framework;
 
 namespace DevelopmentChallenge.Data.Tests
@@ -27,6 +28,32 @@ namespace DevelopmentChallenge.Data.Tests
 
             Assert.IsNotEmpty(idioma.NombreForma(tipoForma, 1));
             Assert.IsNotEmpty(idioma.NombreForma(tipoForma, 2));
+        }
+
+        [TestCase]
+        public void TestFormaExternaSinTraduccion()
+        {
+            var formas = new List<FormaGeometrica> { new FormaExterna() };
+
+            Assert.Throws<InvalidOperationException>(() => new ReporteFormas(new Castellano()).Imprimir(formas));
+        }
+
+        [TestCase]
+        public void TestFormaExternaConTraduccionAgregada()
+        {
+            var formas = new List<FormaGeometrica> { new FormaExterna(), new FormaExterna() };
+            var idioma = new Castellano().AgregarForma<FormaExterna>("Forma externa", "Formas externas");
+
+            var resumen = new ReporteFormas(idioma).Imprimir(formas);
+
+            Assert.AreEqual("<h1>Reporte de Formas</h1>2 Formas externas | Area 24 | Perimetro 20 <br/>TOTAL:<br/>2 formas Perimetro 20 Area 24", resumen);
+        }
+
+        private class FormaExterna : FormaGeometrica
+        {
+            public override decimal CalcularArea() => 12;
+
+            public override decimal CalcularPerimetro() => 10;
         }
     }
 }

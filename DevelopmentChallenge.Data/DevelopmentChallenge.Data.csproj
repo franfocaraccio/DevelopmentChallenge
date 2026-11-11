@@ -48,6 +48,7 @@
     <Compile Include="Classes\Formas\Trapecio.cs" />
     <Compile Include="Classes\Formas\TrianguloEquilatero.cs" />
     <Compile Include="Classes\IIdioma.cs" />
+    <Compile Include="Classes\Idioma.cs" />
     <Compile Include="Classes\Idiomas\Castellano.cs" />
     <Compile Include="Classes\Idiomas\Ingles.cs" />
     <Compile Include="Classes\Idiomas\Italiano.cs" />

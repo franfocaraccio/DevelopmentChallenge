@@ -1,27 +1,23 @@
-using System;
-using System.Collections.Generic;
 using DevelopmentChallenge.Data.Classes.Formas;
 
 namespace DevelopmentChallenge.Data.Classes.Idiomas
 {
-    public class Ingles : IIdioma
+    public class Ingles : Idioma
     {
-        private static readonly Dictionary<Type, string[]> NombresDeFormas = new Dictionary<Type, string[]>
+        public Ingles()
         {
-            { typeof(Cuadrado), new[] { "Square", "Squares" } },
-            { typeof(Circulo), new[] { "Circle", "Circles" } },
-            { typeof(TrianguloEquilatero), new[] { "Triangle", "Triangles" } },
-            { typeof(Rectangulo), new[] { "Rectangle", "Rectangles" } },
-            { typeof(Trapecio), new[] { "Trapezoid", "Trapezoids" } }
-        };
+            AgregarForma<Cuadrado>("Square", "Squares");
+            AgregarForma<Circulo>("Circle", "Circles");
+            AgregarForma<TrianguloEquilatero>("Triangle", "Triangles");
+            AgregarForma<Rectangulo>("Rectangle", "Rectangles");
+            AgregarForma<Trapecio>("Trapezoid", "Trapezoids");
+        }
 
-        public string ListaVacia => "Empty list of shapes!";
-        public string TituloReporte => "Shapes report";
-        public string Formas => "shapes";
-        public string Area => "Area";
-        public string Perimetro => "Perimeter";
-        public string Total => "TOTAL";
-
-        public string NombreForma(Type tipoForma, int cantidad) => NombresDeFormas[tipoForma][cantidad == 1 ? 0 : 1];
+        public override string ListaVacia => "Empty list of shapes!";
+        public override string TituloReporte => "Shapes report";
+        public override string Formas => "shapes";
+        public override string Area => "Area";
+        public override string Perimetro => "Perimeter";
+        public override string Total => "TOTAL";
     }
 }
