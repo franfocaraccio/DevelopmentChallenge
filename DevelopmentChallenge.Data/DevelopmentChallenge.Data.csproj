@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\FormaGeometrica.cs" />
+    <Compile Include="Classes\Formas\Circulo.cs" />
+    <Compile Include="Classes\Formas\Cuadrado.cs" />
+    <Compile Include="Classes\Formas\TrianguloEquilatero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

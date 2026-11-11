@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DevelopmentChallenge.Data.Classes;
+using DevelopmentChallenge.Data.Classes.Formas;
 using NUnit.Framework;
 
 namespace DevelopmentChallenge.Data.Tests
@@ -25,7 +26,7 @@ namespace DevelopmentChallenge.Data.Tests
         [TestCase]
         public void TestResumenListaConUnCuadrado()
         {
-            var cuadrados = new List<FormaGeometrica> {new FormaGeometrica(FormaGeometrica.Cuadrado, 5)};
+            var cuadrados = new List<FormaGeometrica> {new Cuadrado(5)};
 
             var resumen = FormaGeometrica.Imprimir(cuadrados, FormaGeometrica.Castellano);
 
@@ -37,9 +38,9 @@ namespace DevelopmentChallenge.Data.Tests
         {
             var cuadrados = new List<FormaGeometrica>
             {
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 5),
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 1),
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 3)
+                new Cuadrado(5),
+                new Cuadrado(1),
+                new Cuadrado(3)
             };
 
             var resumen = FormaGeometrica.Imprimir(cuadrados, FormaGeometrica.Ingles);
@@ -52,13 +53,13 @@ namespace DevelopmentChallenge.Data.Tests
         {
             var formas = new List<FormaGeometrica>
             {
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 5),
-                new FormaGeometrica(FormaGeometrica.Circulo, 3),
-                new FormaGeometrica(FormaGeometrica.TrianguloEquilatero, 4),
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 2),
-                new FormaGeometrica(FormaGeometrica.TrianguloEquilatero, 9),
-                new FormaGeometrica(FormaGeometrica.Circulo, 2.75m),
-                new FormaGeometrica(FormaGeometrica.TrianguloEquilatero, 4.2m)
+                new Cuadrado(5),
+                new Circulo(3),
+                new TrianguloEquilatero(4),
+                new Cuadrado(2),
+                new TrianguloEquilatero(9),
+                new Circulo(2.75m),
+                new TrianguloEquilatero(4.2m)
             };
 
             var resumen = FormaGeometrica.Imprimir(formas, FormaGeometrica.Ingles);
@@ -73,13 +74,13 @@ namespace DevelopmentChallenge.Data.Tests
         {
             var formas = new List<FormaGeometrica>
             {
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 5),
-                new FormaGeometrica(FormaGeometrica.Circulo, 3),
-                new FormaGeometrica(FormaGeometrica.TrianguloEquilatero, 4),
-                new FormaGeometrica(FormaGeometrica.Cuadrado, 2),
-                new FormaGeometrica(FormaGeometrica.TrianguloEquilatero, 9),
-                new FormaGeometrica(FormaGeometrica.Circulo, 2.75m),
-                new FormaGeometrica(FormaGeometrica.TrianguloEquilatero, 4.2m)
+                new Cuadrado(5),
+                new Circulo(3),
+                new TrianguloEquilatero(4),
+                new Cuadrado(2),
+                new TrianguloEquilatero(9),
+                new Circulo(2.75m),
+                new TrianguloEquilatero(4.2m)
             };
 
             var resumen = FormaGeometrica.Imprimir(formas, FormaGeometrica.Castellano);
