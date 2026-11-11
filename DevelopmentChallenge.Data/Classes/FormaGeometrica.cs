@@ -21,13 +21,6 @@ namespace DevelopmentChallenge.Data.Classes
 {
     public abstract class FormaGeometrica
     {
-        #region Idiomas
-
-        public const int Castellano = 1;
-        public const int Ingles = 2;
-
-        #endregion
-
         private static readonly Type[] TiposEnReporte =
         {
             typeof(Cuadrado),
@@ -47,82 +40,33 @@ namespace DevelopmentChallenge.Data.Classes
 
         public abstract decimal CalcularPerimetro();
 
-        public static string Imprimir(List<FormaGeometrica> formas, int idioma)
+        public static string Imprimir(List<FormaGeometrica> formas, IIdioma idioma)
         {
-            var sb = new StringBuilder();
-
             if (!formas.Any())
+                return $"<h1>{idioma.ListaVacia}</h1>";
+
+            var sb = new StringBuilder();
+            sb.Append($"<h1>{idioma.TituloReporte}</h1>");
+
+            foreach (var tipo in TiposEnReporte)
             {
-                if (idioma == Castellano)
-                    sb.Append("<h1>Lista vacía de formas!</h1>");
-                else
-                    sb.Append("<h1>Empty list of shapes!</h1>");
+                var formasDelTipo = formas.Where(f => f.GetType() == tipo).ToList();
+                if (!formasDelTipo.Any())
+                    continue;
+
+                var cantidad = formasDelTipo.Count;
+                var area = formasDelTipo.Sum(f => f.CalcularArea());
+                var perimetro = formasDelTipo.Sum(f => f.CalcularPerimetro());
+
+                sb.Append($"{cantidad} {idioma.NombreForma(tipo, cantidad)} | {idioma.Area} {area:#.##} | {idioma.Perimetro} {perimetro:#.##} <br/>");
             }
-            else
-            {
-                // HEADER
-                if (idioma == Castellano)
-                    sb.Append("<h1>Reporte de Formas</h1>");
-                else
-                    // default es inglés
-                    sb.Append("<h1>Shapes report</h1>");
 
-                foreach (var tipo in TiposEnReporte)
-                {
-                    var formasDelTipo = formas.Where(f => f.GetType() == tipo).ToList();
-
-                    sb.Append(ObtenerLinea(
-                        formasDelTipo.Count,
-                        formasDelTipo.Sum(f => f.CalcularArea()),
-                        formasDelTipo.Sum(f => f.CalcularPerimetro()),
-                        tipo,
-                        idioma));
-                }
-
-                // FOOTER
-                sb.Append("TOTAL:<br/>");
-                sb.Append(formas.Count + " " + (idioma == Castellano ? "formas" : "shapes") + " ");
-                sb.Append((idioma == Castellano ? "Perimetro " : "Perimeter ") + formas.Sum(f => f.CalcularPerimetro()).ToString("#.##") + " ");
-                sb.Append("Area " + formas.Sum(f => f.CalcularArea()).ToString("#.##"));
-            }
+            sb.Append($"{idioma.Total}:<br/>");
+            sb.Append($"{formas.Count} {idioma.Formas} ");
+            sb.Append($"{idioma.Perimetro} {formas.Sum(f => f.CalcularPerimetro()):#.##} ");
+            sb.Append($"{idioma.Area} {formas.Sum(f => f.CalcularArea()):#.##}");
 
             return sb.ToString();
-        }
-
-        private static string ObtenerLinea(int cantidad, decimal area, decimal perimetro, Type tipo, int idioma)
-        {
-            if (cantidad > 0)
-            {
-                if (idioma == Castellano)
-                    return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area:#.##} | Perimetro {perimetro:#.##} <br/>";
-
-                return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area:#.##} | Perimeter {perimetro:#.##} <br/>";
-            }
-
-            return string.Empty;
-        }
-
-        private static string TraducirForma(Type tipo, int cantidad, int idioma)
-        {
-            if (tipo == typeof(Cuadrado))
-            {
-                if (idioma == Castellano) return cantidad == 1 ? "Cuadrado" : "Cuadrados";
-                return cantidad == 1 ? "Square" : "Squares";
-            }
-
-            if (tipo == typeof(Circulo))
-            {
-                if (idioma == Castellano) return cantidad == 1 ? "Círculo" : "Círculos";
-                return cantidad == 1 ? "Circle" : "Circles";
-            }
-
-            if (tipo == typeof(TrianguloEquilatero))
-            {
-                if (idioma == Castellano) return cantidad == 1 ? "Triángulo" : "Triángulos";
-                return cantidad == 1 ? "Triangle" : "Triangles";
-            }
-
-            return string.Empty;
         }
     }
 }
